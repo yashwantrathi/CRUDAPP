@@ -1,0 +1,32 @@
+[
+  {
+    "name": "yash",
+    "email": "yash@gmail.com",
+    "createdAt": "2025-08-10T11:28:48.870Z"
+  },
+  {
+    "name": "andrew",
+    "email": "andrew@gmail.com",
+    "createdAt": "2025-08-10T11:29:39.332Z"
+  },
+  {
+    "name": "jay",
+    "email": "jay12@gmail.com",
+    "createdAt": "2025-08-10T11:29:55.470Z"
+  },
+  {
+    "name": "jake",
+    "email": "Jake1@gmail.com",
+    "createdAt": "2025-08-10T14:09:39.706Z"
+  },
+  {
+    "name": "ram",
+    "email": "ram@outlook.com",
+    "createdAt": "2025-08-10T14:11:30.036Z"
+  },
+  {
+    "name": "rajaram",
+    "email": "raj@yahoo",
+    "createdAt": "2025-08-10T14:38:44.557Z"
+  }
+]

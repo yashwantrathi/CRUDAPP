@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UserFlow — Smart People & Activity Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!--animated backgrounds and overlays -->
+  <div class="modern-bg"></div>
+  <div class="overlay-blob"></div>
+  <div class="overlay-waves"></div>
+  <div class="overlay-blur-circles"></div>
+  <div class="overlay-particles">
+    <span class="particle particle1"></span>
+    <span class="particle particle2"></span>
+    <span class="particle particle3"></span>
+    <span class="particle particle4"></span>
+    <span class="particle particle5"></span>
+    <span class="particle particle6"></span>
+  </div>
+
+  <!-- Main site content -->
+  <div class="outer-wrapper">
+
+    <!-- Animated Hero section -->
+    <section class="modern-hero">
+      <div class="hero-bg-shapes">
+        <div class="hero-blob blob1"></div>
+        <div class="hero-blob blob2"></div>
+        <div class="hero-blob blob3"></div>
+        <div class="hero-wave"></div>
+        <div class="hero-dots">
+          <span class="dot dot1"></span>
+          <span class="dot dot2"></span>
+          <span class="dot dot3"></span>
+          <span class="dot dot4"></span>
+          <span class="dot dot5"></span>
+        </div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">UserFlow — Smart People & Activity Manager</h1>
+        <p class="hero-desc">Manage your users dynamically with a vibrant, animated dashboard. Everything feels alive! </p>
+        <button class="hero-btn">Get Started</button>
+      </div>
+    </section>
+    <!-- End hero section -->
+
+    <!-- Header  -->
+    <header class="hero-header anim-fadein">
+      <div class="logo-box">
+        <span class="avatar-logo animated-glow"><i class="fas fa-database"></i></span>
+        <div>
+          <h1 class="animated-title">UserFlow — Smart People & Activity Manager</h1>
+          <span class="subtitle">Experience seamless, dynamic user management</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;">
+        <div class="theme-toggle">
+          <label class="switch">
+            <input type="checkbox" id="darkModeToggle" />
+            <span class="slider round"></span>
+          </label>
+          <span>Dark Mode</span>
+        </div>
+        <!-- Admin icon/button -->
+      <span id="adminIcon" title="Admin Panel"
+  style="cursor:pointer;margin-left:18px;display:flex;flex-direction:column;align-items:center;">
+  <i class="fas fa-user-shield"
+    style="font-size:1.7rem;color:#4b3fc5;filter:drop-shadow(0 2px 6px #1cb4a978);"></i>
+  <span style="font-size:0.97rem; color:#6d6b79; margin-top:2px; letter-spacing:0.04em;">Admin</span>
+</span>
+
+      </div>
+    </header>
+
+    <!-- Main content w/ entrance animation -->
+    <main class="main-card anim-slideup">
+      <!-- Floating action button -->
+      <button id="fabAddUser" title="Add User" class="fab-animated">
+        <i class="fas fa-plus"></i>
+      </button>
+      <!-- Add/Edit form -->
+      <section class="form-box">
+        <form id="crudForm" autocomplete="off">
+          <div class="input-row">
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" id="name" placeholder="Full Name" required />
+            </div>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" placeholder="Email Address" required />
+            </div>
+            <button type="submit"><i class="fas fa-user-plus"></i> Add User</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Search + Export -->
+      <section class="search-box">
+        <div class="search-row">
+          <i class="fas fa-search"></i>
+          <input id="searchInput" type="text" placeholder="Search by name or email..." />
+        </div>
+        <button id="exportPdfBtn" class="export-btn">
+          <i class="fas fa-file-download"></i> Export Data (PDF)
+        </button>
+      </section>
+
+      <!-- Users Table -->
+      <section class="users-table-card anim-scalein">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Avatar</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Added On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows rendered by JS -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Footer -->
+    <footer class="footer-box animated-glow anim-fadein">
+      <p>&copy; 2025 UserFlow by Yashwanth Rathi</p>
+    </footer>
+  </div>
+
+  <!-- PDF export dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
+  
+  <!-- Main script -->
+  <script src="script.js"></script>
+
+  <!-- Small script for FAB animation, focus, Get Started, Admin panel nav -->
+  <script>
+    // FAB brings focus to name input
+    document.getElementById("fabAddUser").onclick = () => {
+      document.getElementById("name").focus();
+      document.getElementById("crudForm").scrollIntoView({ behavior: "smooth" });
+    };
+    document.querySelector('.hero-btn').onclick = () => {
+      document.querySelector('.main-card').scrollIntoView({ behavior: "smooth" });
+    };
+    // Admin: prompt for password, go to admin.html if correct
+    document.getElementById("adminIcon").onclick = function() {
+      const pass = prompt("Enter admin password:");
+      if (pass === "yash") { // Change this to your secret!
+        window.location.href = "admin.html";
+      } else if (pass !== null) {
+        alert("Incorrect password!");
+      }
+    };
+  </script>
+</body>
+</html>

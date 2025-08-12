@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard & Activity Log</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Chart.js for analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Admin background: clean, not animated */
+    body { background: linear-gradient(120deg,#eef3f7 0%,#e1f4fa 100%); }
+    main.main-card { margin-top: 28px; }
+    .main-card { max-width: 1100px; }
+    #dashboardStats > div { min-width: 180px; }
+    #userGrowthChart { display:block; margin:0 auto; }
+    @media (max-width:1100px) {
+      #userGrowthChart { width:99vw !important; height:290px !important;}
+      .main-card { max-width:99vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="outer-wrapper">
+    <header class="hero-header">
+      <div class="logo-box">
+        <span class="avatar-logo animated-glow"><i class="fas fa-user-shield"></i></span>
+        <div>
+          <h1 class="animated-title">Admin Dashboard</h1>
+          <span class="subtitle">Analytics & Activity Log</span>
+        </div>
+      </div>
+      <button onclick="window.location.href='index.html'" class="export-btn" style="margin-left:auto;">Back to Main</button>
+    </header>
+    <main class="main-card anim-slideup">
+      <!-- Analytics Section -->
+      <section>
+        <h2 style="color:#24d6ce; margin-top:0;">📊 Analytics Overview</h2>
+        <div id="dashboardStats" style="display:flex; gap:50px; margin-bottom:35px; flex-wrap:wrap;">
+          <div><strong>Total Users:</strong> <span id="totalUsers">0</span></div>
+          <div><strong>Users Added Today:</strong> <span id="usersToday">0</span></div>
+          <div><strong>Users Deleted Today:</strong> <span id="usersDeletedToday">0</span></div>
+          <div><strong>Users This Week:</strong> <span id="usersWeek">0</span></div>
+        </div>
+        <canvas id="userGrowthChart" width="1000" height="500"></canvas>
+      </section>
+
+      <!-- Activity Log Section -->
+      <section style="margin-top:44px;">
+        <h2 style="color:#4b3fc5;">📝 Activity Log</h2>
+        <table id="activityTable" style="width:100%;margin-top:18px;">
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filled by admin.js -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
